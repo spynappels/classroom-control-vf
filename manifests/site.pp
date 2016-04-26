@@ -45,4 +45,8 @@ node default {
   notify { "Hello, my name is ${::hostname}": }
   notify { "This is new!!! Take 2": }
   notify { "This is yet another notification": }
+  file { '/etc/motd':
+    ensure => file'
+    content => "Everything sucks!/n"
+  }
 }
