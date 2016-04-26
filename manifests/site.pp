@@ -45,6 +45,4 @@ node default {
   notify { "Hello, my name is ${::hostname}": }
   notify { "This is new!!! Take 2": }
   notify { "This is yet another notification": }
-  hooky line
-  another hooky line
 }
