@@ -45,6 +45,7 @@ node default {
   notify { "Hello, my name is ${::hostname}": }
   notify { "This is new!!! Take 2": }
   notify { "This is yet another notification": }
+  include users
 
   exec { "cowsay-motd":
     command => "/usr/local/bin/cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
