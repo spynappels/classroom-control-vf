@@ -1,3 +1,6 @@
-user { 'fundamentals':
-  ensure => present,
+class {
+  
+  user { 'fundamentals':
+    ensure => present,
+  }
 }
