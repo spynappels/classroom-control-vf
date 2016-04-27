@@ -2,7 +2,6 @@ class memcached {
 
   package { 'memcached':
     ensure => present,
-    enable => true,
   }
   
   file { '/etc/sysconfig/memcached':
