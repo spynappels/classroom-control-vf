@@ -42,18 +42,4 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-
-  include users
-  include skeleton
-
-  exec { "cowsay-motd":
-    command => "/usr/local/bin/cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
-    creates => "/etc/motd"
-  }
-  
-  host { 'testing-host':
-    ensure => present,
-    name => "testing.puppetlabs.vm",
-    ip => '127.0.0.1',
-  }
 }
