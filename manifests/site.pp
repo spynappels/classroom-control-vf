@@ -44,6 +44,7 @@ node default {
   #   class { 'my_class': }
 
   include users
+  include skeleton
 
   exec { "cowsay-motd":
     command => "/usr/local/bin/cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
