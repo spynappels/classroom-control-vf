@@ -43,11 +43,11 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  #case $::virtual {
-  #  'virtual'{
-  #    $value = capitalize($::virtual),
-  #    notify["This is a ${value} node"],
-  #  }
-  #}
+  case $::virtual {
+    'virtual'{
+      $value = capitalize($::virtual),
+      notify { "This is a ${value} node" },
+    }
+  }
   notify { $string: }
 }
