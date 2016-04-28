@@ -48,4 +48,5 @@ node default {
   #    notify["This is a ${value} node"],
   #  }
   #}
+  notice(hiera('message'))
 }
