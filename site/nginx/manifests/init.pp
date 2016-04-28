@@ -16,7 +16,7 @@ class nginx {
   file {'conf_dir':
     path => '/etc/nginx',
     ensure => directory,
-    depends => Package['nginx'],
+    require => Package['nginx'],
   }
   file {'conf_subdir':
     path => '/etc/nginx/conf.d',
