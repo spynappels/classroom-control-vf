@@ -44,7 +44,7 @@ node default {
   # Example:
   #   class { 'my_class': }
   case $::virtual {
-    'virtual'{
+    'virtual':{
       $value = capitalize($::virtual),
       notify { "This is a ${value} node" },
     }
