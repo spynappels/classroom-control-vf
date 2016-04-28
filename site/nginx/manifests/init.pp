@@ -38,7 +38,7 @@ class nginx {
   service {'nginx':
     ensure => running,
     enable => true,
-    subscribe => File['server_block'],
+    subscribe => File['main_server'],
   }
 
 }
