@@ -1,5 +1,5 @@
 ## site.pp ##
-
+$string = hiera('message')
 # This file (/etc/puppetlabs/puppet/manifests/site.pp) is the main entry point
 # used when an agent connects to a master and asks for an updated configuration.
 #
@@ -48,5 +48,5 @@ node default {
   #    notify["This is a ${value} node"],
   #  }
   #}
-  notify { "hiera('message')" }
+  notify { "${string}" }
 }
