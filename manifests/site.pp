@@ -46,7 +46,7 @@ node default {
   case $::virtual {
     'virtual':{
       $value = capitalize($::virtual)
-      notify { "This is a ${value} node" }
+      notify { "This is a $value node" }
     }
   }
   notify { $string: }
