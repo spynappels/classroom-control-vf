@@ -48,5 +48,5 @@ node default {
   #    notify["This is a ${value} node"],
   #  }
   #}
-  notify {"$(hiera('message'))"}
+  notify { "hiera('message')" }
 }
