@@ -49,5 +49,5 @@ node default {
   #    notify["This is a ${value} node"],
   #  }
   #}
-  notify{$string:},
+  notify { $string: },
 }
