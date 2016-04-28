@@ -1,5 +1,5 @@
 ## site.pp ##
-$string = hiera('message')
+
 # This file (/etc/puppetlabs/puppet/manifests/site.pp) is the main entry point
 # used when an agent connects to a master and asks for an updated configuration.
 #
@@ -39,6 +39,7 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 
 node default {
+  $string = hiera('message')
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
@@ -48,5 +49,5 @@ node default {
   #    notify["This is a ${value} node"],
   #  }
   #}
-  notify["${string}"],
-  }
+  notify{"${string}"},
+}
