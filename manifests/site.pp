@@ -39,7 +39,7 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 
 node default {
-  $string = hiera('message'),
+  $string = hiera('message')
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
@@ -49,5 +49,5 @@ node default {
   #    notify["This is a ${value} node"],
   #  }
   #}
-  notify { $string: },
+  notify{$string:}
 }
