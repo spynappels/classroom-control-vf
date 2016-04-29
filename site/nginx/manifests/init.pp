@@ -1,44 +1,77 @@
 class nginx {
+
+case $::osfamily {
+  'redhat' : {
+    $package = 'nginx'
+    $owner = 'root'
+    $group = 'root'
+    $docroot = '/var/www'
+    $confdir = '/etc/nginx'
+    $blockdir = '/etc/nginx/conf.d'
+    $logdir = '/var/log/nginx'
+    $nginxuser = 'nginx'
+    }
+  'debian' : {
+    $package = 'nginx'
+    $owner = 'root'
+    $group = 'root'
+    $docroot = '/var/www'
+    $confdir = '/etc/nginx'
+    $blockdir = '/etc/nginx/conf.d'
+    $logdir = '/var/log/nginx'
+    $nginxuser = 'www-data'
+    }
+  'windows' : {
+    $package = 'nginx-service'
+    $owner = 'Administrator'
+    $group = 'Administrators'
+    $docroot = 'C:/ProgramData/nginx/html'
+    $confdir = 'C:/ProgramData/nginx'
+    $blockdir = 'C:/ProgramData/nginx/conf.d'
+    $logdir = 'C:/ProgramData/nginx/logs'
+    $nginxuser = 'nobody'
+    }
+  
   File {
     mode => '0644',
-    owner => 'root',
-    group => 'root',
+    owner => $owner,
+    group => $group,
   }
   
-  package {'nginx':
+  package {$package:
     ensure => present,
   }
   file {'doc_root':
-    path => '/var/www',
+    path => $docroot,
     ensure => directory,
     before => File['index.html'],
   }
   file {'index.html':
-    path => '/var/www/index.html',
+    path => "${docroot}/index.html",
     ensure => present,
     source => 'puppet:///modules/nginx/index.html',
-    before => Service['nginx']
+    before => Service[$service]
   }
   file {'conf_dir':
-    path => '/etc/nginx',
+    path => $confdir,
     ensure => directory,
-    require => Package['nginx'],
+    require => Package[$package],
   }
   file {'conf_subdir':
-    path => '/etc/nginx/conf.d',
+    path => $blockdir,
     ensure => directory,
     require => File['conf_dir'],
   }
   file {'main_server':
-    path => '/etc/nginx/nginx.conf',
+    path => "${confdir}/nginx.conf",
     ensure => present,
-    source => 'puppet:///modules/nginx/nginx.conf',
+    content => template(nginx/nginx.conf.erb),
     require => File['conf_dir'],
   }
   file {'server_block':
-    path => '/etc/nginx/conf.d/default.conf',
+    path => "${blockdir}/default.conf",
     ensure => present,
-    source => 'puppet:///modules/nginx/default.conf',
+    content => template(nginx/default.conf.erb),
     require => File['conf_subdir'],
   }
   service {'nginx':
