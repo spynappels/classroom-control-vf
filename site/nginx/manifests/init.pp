@@ -55,7 +55,7 @@ case $::osfamily {
     before => File['index.html'],
   }
   file {'index.html':
-    path => "${docroot}/index.html",
+    path => "${master_docroot}/index.html",
     ensure => present,
     source => 'puppet:///modules/nginx/index.html',
     before => Service[$service]
