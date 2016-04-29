@@ -2,13 +2,8 @@
 #   * Official English Documentation: http://nginx.org/en/docs/
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
 
-<% if @osfamily == 'RedHat' then -%>
-user              nginx;
-<% elsif @osfamily == 'Debian' then -%>
-user              www-data;
-<% else -%>
-user              nobody;
-<% end -%>
+
+user              <%= @nginx-user %>;
 worker_processes  1;
 
 error_log  <%= @logdir %>/error.log;
