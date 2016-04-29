@@ -50,7 +50,7 @@ case $::osfamily {
     ensure => present,
   }
   file {'doc_root':
-    path => $docroot,
+    path => $master_docroot,
     ensure => directory,
     before => File['index.html'],
   }
