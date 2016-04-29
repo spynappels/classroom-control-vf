@@ -1,11 +1,9 @@
 server {
     listen 80;
 
-<% if @kernel == 'windows' then -%>
-    root C:/ProgramData/nginx/html
-<% else -%>
-    root /var/www
-<% end -%>
+
+    root <%= @docroot %>
+
     index index.html index.htm;
 
     server_name _;
