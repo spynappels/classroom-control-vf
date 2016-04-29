@@ -31,7 +31,7 @@ case $::osfamily {
     $logdir = 'C:/ProgramData/nginx/logs'
     $nginxuser = 'nobody'
     }
-  
+  }
   File {
     mode => '0644',
     owner => $owner,
