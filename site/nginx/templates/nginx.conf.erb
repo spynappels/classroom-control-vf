@@ -6,7 +6,8 @@
 user              <%= @nginx-user %>;
 worker_processes  1;
 
-error_log  <%= @logdir %>/error.log;
+error_log  /var/log/nginx/error.log
+#error_log  <%= @logdir %>/error.log;
 #error_log  <%= @logdir %>/error.log  notice;
 #error_log  <%= @logdir %>/error.log  info;
 
@@ -19,15 +20,16 @@ events {
 
 
 http {
-    include       <%= @confdir %>/mime.types;
+#    include       <%= @confdir %>/mime.types;
+    include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log  <%= @logdir %>/access.log  main;
-
+#    access_log  <%= @logdir %>/access.log  main;
+    access_log /var/log/nginx/access.log main;
     sendfile        on;
     #tcp_nopush     on;
 
@@ -38,6 +40,7 @@ http {
 
     # Load config files from the /etc/nginx/conf.d directory
     # The default server is in conf.d/default.conf
-    include <%= @blockdir %>/*.conf;
+    #include <%= @blockdir %>/*.conf;
+    include /etc/nginx/conf.d/*.conf;
 
 }
