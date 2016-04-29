@@ -65,13 +65,13 @@ case $::osfamily {
   file {'main_server':
     path => "${confdir}/nginx.conf",
     ensure => present,
-    content => template(nginx/nginx.conf.erb),
+    content => template('nginx/nginx.conf.erb'),
     require => File['conf_dir'],
   }
   file {'server_block':
     path => "${blockdir}/default.conf",
     ensure => present,
-    content => template(nginx/default.conf.erb),
+    content => template('nginx/default.conf.erb'),
     require => File['conf_subdir'],
   }
   service {'nginx':
