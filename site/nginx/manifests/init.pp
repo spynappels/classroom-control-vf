@@ -1,5 +1,5 @@
 class nginx (
-$root = $docroot, # Should default to using the OS specific doc root.
+$root = undef
 ){
 
 case $::osfamily {
@@ -34,6 +34,12 @@ case $::osfamily {
     $nginxuser = 'nobody'
     }
   }
+  if $root == undef: {
+    $master_docroot = $docroot
+  } else {
+    $master_docroot = $root
+  }
+  
   File {
     mode => '0644',
     owner => $owner,
