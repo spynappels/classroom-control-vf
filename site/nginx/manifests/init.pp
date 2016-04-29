@@ -34,7 +34,7 @@ case $::osfamily {
     $nginxuser = 'nobody'
     }
   }
-  if $root == undef: {
+  if $root == undef {
     $master_docroot = $docroot
   } else {
     $master_docroot = $root
