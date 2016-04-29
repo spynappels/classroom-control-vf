@@ -1,4 +1,6 @@
-class nginx {
+class nginx (
+$root = $docroot, # Should default to using the OS specific doc root.
+){
 
 case $::osfamily {
   'redhat' : {
